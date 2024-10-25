@@ -8,8 +8,10 @@
 # Autor: John Sanabria - john.sanabria@correounivalle.edu.co
 # Fecha: 2024-08-22
 #
-INPUT_PNG="image.png"
-TEMP_FILE="image.bin"
-python3 fromPNG2Bin.py ${INPUT_PNG}
-./main ${TEMP_FILE}
-python3 fromBin2PNG.py ${TEMP_FILE}.new
+
+for INPUT_PNG in imagenes/*.png; do
+    TEMP_FILE="${INPUT_PNG%.png}.bin"  # Cambia el nombre para cada imagen
+    python3 fromPNG2Bin.py ${INPUT_PNG}  # Convierte PNG a BIN
+    ./main ${TEMP_FILE}  # Ejecuta el programa principal con el archivo binario
+    python3 fromBin2PNG.py ${TEMP_FILE}.new  # Convierte el nuevo BIN a PNG
+done
